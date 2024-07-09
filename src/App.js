@@ -7,7 +7,6 @@ import Register from './components/Register';
 import EventList from './components/EventList';
 import EventDetail from './components/EventDetail';
 import Navbar from './components/Navbar';
-import UserProfile from './components/UserProfile';
 import NotFound from './components/NotFound';
 import SearchResults from './components/SearchResults';
 import Dashboard from './components/Dashboard';

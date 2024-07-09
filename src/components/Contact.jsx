@@ -11,38 +11,41 @@ const ContactUs = () => {
     message: Yup.string().required("Message is required"),
   });
 
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const response = await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "http://localhost:3000/contact", // Specify the origin of the request
+          // Add any other headers needed for your request
+        },
+        body: JSON.stringify(values),
+        credentials: "same-origin", // Include credentials like cookies if necessary
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      alert("Email sent successfully!");
+      resetForm(); // Clear the form fields
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to send email.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="contact-us-section">
       <h2>Contact Us</h2>
       <Formik
         initialValues={{ name: "", email: "", subject: "", message: "" }}
         validationSchema={ContactSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          fetch("http://localhost:5000/contact", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error("Network response was not ok");
-              }
-              return response.json();
-            })
-            .then(data => {
-              alert("Email sent successfully!");
-              resetForm(); // Clear the form fields
-            })
-            .catch(error => {
-              console.error("Error:", error);
-              alert("Failed to send email.");
-            })
-            .finally(() => {
-              setSubmitting(false);
-            });
-        }}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className="contact-form">

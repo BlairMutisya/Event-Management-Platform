@@ -168,7 +168,7 @@ body {
   background-color: #f9f9f9; /* Example background color */
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 20px;
+  border-radius: 0px;
   gap: 40px; /* Add space between the image and text */
 }
 
@@ -222,7 +222,7 @@ body {
   padding: 10px 20px;
   margin-right: 10px;
   font-size: 16px;
-  background-color: #ED1C24; /* Your preferred red color */
+  background-color: #fe4e5b; /* Your preferred red color */
   color: white;
   border: none;
   border-radius: 5px;
@@ -365,7 +365,7 @@ footer {
 }
 
 .contact-form .submit:hover {
-  background-color: #d01720;
+  background-color: #fe4e5b;
 }
 .input-field,
 .checkbox-field,
