@@ -17,11 +17,8 @@ const ContactUs = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Origin: "http://localhost:3000/contact", // Specify the origin of the request
-          // Add any other headers needed for your request
         },
         body: JSON.stringify(values),
-        credentials: "same-origin", // Include credentials like cookies if necessary
       });
 
       if (!response.ok) {

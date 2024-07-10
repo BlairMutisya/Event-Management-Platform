@@ -16,7 +16,7 @@ const EventForm = () => {
     maxParticipants: "",
     category: "",
     acceptReservation: false,
-    imageUrl: "", // URL field for image
+    imageUrl: "", 
   };
 
   const validationSchema = Yup.object().shape({
@@ -36,9 +36,10 @@ const EventForm = () => {
       .url("Must be a valid URL")
       .required("Image URL is required"),
   });
-
+  
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      const token = localStorage.getItem('token'); // Retrieve token from localStorage
       const formData = {
         title: values.title,
         description: values.description,
@@ -59,6 +60,7 @@ const EventForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-access-tokens": token,
         },
         body: JSON.stringify(formData),
       });
